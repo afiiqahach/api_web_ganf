@@ -1,0 +1,29 @@
+{
+  "name": "upload_to_storage",
+  "version": "1.0.0",
+  "description": "upload file image to firebase storage",
+  "main": "./src/server.js",
+  "scripts": {
+    "start": "node ./src/server.js",
+    "start:dev": "nodemon ./src/server.js"
+  },
+  "keywords": [
+    "node",
+    "firebase",
+    "storage",
+    "image"
+  ],
+  "author": "GANF Team <ganfstore@gmail.com>",
+  "license": "ISC",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "dotenv": "^10.0.0",
+    "express": "^4.17.1",
+    "firebase": "^10.12.0",
+    "firebase-admin": "^12.1.0",
+    "multer": "^1.4.3"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.13"
+  }
+}

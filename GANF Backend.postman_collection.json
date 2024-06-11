@@ -1,0 +1,687 @@
+{
+	"info": {
+		"_postman_id": "8271cf7c-beb3-49a7-ad67-46429623f503",
+		"name": "GANF Backend",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "12884068"
+	},
+	"item": [
+		{
+			"name": "Auth",
+			"item": [
+				{
+					"name": "Login",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"const response = pm.response.json()\r",
+									"\r",
+									"if (response.data.accessToken) {\r",
+									"    pm.environment.set(\"jwt\", response.data.accessToken);\r",
+									"}"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\": \"ganfstore@gmail.com\",\r\n    \"password\": \"ganfstore123\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/api/auth/login",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"auth",
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Profile",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "authorization",
+								"value": "Bearer {{jwt}}"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/api/auth/profile",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"auth",
+								"profile"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Profile",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "authorization",
+								"value": "Bearer {{jwt}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"photo\": \"https://firebasestorage.googleapis.com/v0/b/ganf-backend.appspot.com/o/products%2F1716205269006-default-admin.png?alt=media&token=daba3605-1a10-4b76-8f3c-7d5fdf3b863f\",\r\n    \"username\": \"Azura\",\r\n    \"email\": \"ganfstore@gmail.com\",\r\n    \"phoneNumber\": \"085817922089\",\r\n    \"password\": \"123456789\",\r\n    \"role\": \"Admin\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/api/auth/profile",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"auth",
+								"profile"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Logout",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "authorization",
+								"value": "Bearer {{jwt}}"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": []
+						},
+						"url": {
+							"raw": "{{base_url}}/api/auth/logout",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"auth",
+								"logout"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Users",
+			"item": [
+				{
+					"name": "Show All Users",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "authorization",
+								"value": "Bearer {{jwt}}"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/api/users",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"users"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get User By ID",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "authorization",
+								"value": "Bearer {{jwt}}"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/api/users/iv0f3WYzpyYnThN3R5hGG7eRchc2",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"users",
+								"iv0f3WYzpyYnThN3R5hGG7eRchc2"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Promotions",
+			"item": [
+				{
+					"name": "Show All Promotions",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/promotions",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"promotions"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Promotion By ID",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "authorization",
+								"value": "Bearer {{jwt}}"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/api/promotions/y97jHGqlDsS6umOksiB5",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"promotions",
+								"y97jHGqlDsS6umOksiB5"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "New Promotion",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "authorization",
+								"value": "Bearer {{jwt}}"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "photo",
+									"type": "file",
+									"src": "/C:/Users/Rachma Adzima/Downloads/Freelance/ganf-website/src/assets/images/special1.png"
+								},
+								{
+									"key": "description",
+									"value": "Desember berkah dengan potongan harga 10% all item. Mulai dari tanggal 7, 14, 21 & 28.",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{base_url}}/api/promotions",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"promotions"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Promotion By ID",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "authorization",
+								"value": "Bearer {{jwt}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"photo\": \"https://firebasestorage.googleapis.com/v0/b/ganf-backend.appspot.com/o/promotions%2F1716094280494-special_october.png?alt=media&token=a96e89ac-6ff3-4174-8ebf-59ce8d332750\",\r\n    \"description\": \"Oktober berkah dengan potongan harga 10% all item. Mulai dari tanggal 1 hingga 15 Oktober.\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/api/promotions/y97jHGqlDsS6umOksiB5",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"promotions",
+								"y97jHGqlDsS6umOksiB5"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Promotion By ID",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "authorization",
+								"value": "Bearer {{jwt}}"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/api/promotions/9UtUlciwHdbL3sdbSew9",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"promotions",
+								"9UtUlciwHdbL3sdbSew9"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Products",
+			"item": [
+				{
+					"name": "Show All Products",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/products?category=detail",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"products"
+							],
+							"query": [
+								{
+									"key": "category",
+									"value": "detail",
+									"description": "FnB or Clothes"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Product By ID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/products/VkhTK7o6Abdap62do88B",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"products",
+								"VkhTK7o6Abdap62do88B"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "New Product",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "authorization",
+								"value": "Bearer {{jwt}}"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "photo",
+									"description": "\n",
+									"type": "file",
+									"src": "/C:/Users/Rachma Adzima/Pictures/cat.jpg"
+								},
+								{
+									"key": "name",
+									"value": "Piano Shirt",
+									"type": "text"
+								},
+								{
+									"key": "category",
+									"value": "Clothes",
+									"type": "text"
+								},
+								{
+									"key": "series",
+									"value": "White Series",
+									"type": "text"
+								},
+								{
+									"key": "description",
+									"value": "Piano Pattern",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{base_url}}/api/products",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"products"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Product By ID",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "authorization",
+								"value": "Bearer {{jwt}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"photo\": \"https://firebasestorage.googleapis.com/v0/b/ganf-backend.appspot.com/o/products%2F1716193128484-whiteonigiri.png?alt=media&token=2f490072-d37d-48fd-8112-e3f77ec71449\",\r\n    \"name\": \"Onigiri Shirt\",\r\n    \"category\": \"Clothes\",\r\n    \"series\": \"White Series\",\r\n    \"description\": \"Produk fashion terbaru untuk kamu!\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/api/products/VaMjZyWYAop9PxgfKbyQ",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"products",
+								"VaMjZyWYAop9PxgfKbyQ"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Product By ID",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "authorization",
+								"value": "Bearer {{jwt}}"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/api/products/VaMjZyWYAop9PxgfKbyQ",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"products",
+								"VaMjZyWYAop9PxgfKbyQ"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Categories",
+			"item": [
+				{
+					"name": "Show All Categories",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/categories",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"categories"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Show Group Categories",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/categories/group",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"categories",
+								"group"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Clothing Series",
+			"item": [
+				{
+					"name": "Show All Series",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/clothing-series",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"clothing-series"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Testimonials",
+			"item": [
+				{
+					"name": "Show All Testimonials",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/testimonials",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"testimonials"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Testimonial By ID",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "authorization",
+								"value": "Bearer {{jwt}}"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/api/testimonials/GfEFfw30B3Bo6nEJ7nqV",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"testimonials",
+								"GfEFfw30B3Bo6nEJ7nqV"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "New Testimonial",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"productId\": \"iZjrsY1iT1Uk4cwrPFi5\",\r\n    \"rating\": 5,\r\n    \"customerName\": \"Ranan\",\r\n    \"review\": \"Ini testimoni dari customer\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/api/testimonials",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"testimonials"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Home",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}",
+					"host": [
+						"{{base_url}}"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "jwt",
+			"value": "eyJhbGciOiJSUzI1NiIsImtpZCI6ImUyYjIyZmQ0N2VkZTY4MmY2OGZhY2NmZTdjNGNmNWIxMWIxMmI1NGIiLCJ0eXAiOiJKV1QifQ.eyJpc3MiOiJodHRwczovL3NlY3VyZXRva2VuLmdvb2dsZS5jb20vZ2FuZi1iYWNrZW5kIiwiYXVkIjoiZ2FuZi1iYWNrZW5kIiwiYXV0aF90aW1lIjoxNzE2MDQwNjYyLCJ1c2VyX2lkIjoiaXYwZjNXWXpweVluVGhOM1I1aEdHN2VSY2hjMiIsInN1YiI6Iml2MGYzV1l6cHlZblRoTjNSNWhHRzdlUmNoYzIiLCJpYXQiOjE3MTYwNDA2NjIsImV4cCI6MTcxNjA0NDI2MiwiZW1haWwiOiJnYW5mc3RvcmVAZ21haWwuY29tIiwiZW1haWxfdmVyaWZpZWQiOmZhbHNlLCJmaXJlYmFzZSI6eyJpZGVudGl0aWVzIjp7ImVtYWlsIjpbImdhbmZzdG9yZUBnbWFpbC5jb20iXX0sInNpZ25faW5fcHJvdmlkZXIiOiJwYXNzd29yZCJ9fQ.llNiZmgpskggoxi-ExaXMAF0uP-6ySnaBzsVpG6flF4YZeA-TIZrzzufdYSRZO6Sdw23fv8V7FZfSfzbVpbeiaydtMNyebROodQRJEcZTXJ2AYDYTsyYQsVjYcUWKLhtcFyNeFR5ofUPwkJD_RCeTUtz7QRXwJR4yihMRkutri2fIaCHVo9Q4Ln7RRKtmdQcQOHVUFrVz5Xofp8PPnpwGpRZJFZc2Bz5iqkQ6IlP4PlostJ3PVe3pf96veJJ5hbZKNXGWdylsyVVuwfJWdzpBNwZlc6MHVxZx6a66Z6aeigWnbcD_OqxogcUQF5eeaWWcSeQtuiH3nYqWRoFySo02Q",
+			"type": "string",
+			"disabled": true
+		}
+	]
+}
