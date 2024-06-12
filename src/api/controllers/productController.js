@@ -24,6 +24,7 @@ const formatProductData = (productData, productId) => {
     category: productData.category,
     series: productData.series || null,
     description: productData.description,
+    url: productData.url || null,
     createdAt: productData.createdAt.toDate().toISOString(),
     updatedAt: productData.updatedAt.toDate().toISOString(),
   };
